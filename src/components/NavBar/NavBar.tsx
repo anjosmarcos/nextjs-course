@@ -1,26 +1,11 @@
 import { GamePadIcon, HomeIcon, PriceIcon, UserIcon, WalkthroughsIcon } from "@/components"
 import { cn } from "@/helpers/cn"
-import React from "react"
+import { NavBarList } from "./NavBarList"
+import { NavBarListItemButton } from "./NavBarListItemButton"
+import { NavBarListItemLink } from "./NavBarListItemLink"
+import { NavBarProps } from "./types"
 
-type NavBarListProps = React.ComponentProps<"ul">
-type NavBarListItemProps = React.ComponentProps<"li">
-type NavBarProps = React.ComponentProps<"nav">
 
-const NavBarList = ({ children, className, ...props }: NavBarListProps) => {
-    return (
-        <ul className={cn("my-4 border-t border-indigo-400/20 hover:border-indigo-400/40", className)} {...props}>
-            {children}
-        </ul >
-    )
-}
-
-const NavBarListItem = ({ children, className, ...props }: NavBarListItemProps) => {
-    return (
-        <li className={cn("group my-2 p-2 rounded-lg bg-transparent hover:bg-indigo-400/40 cursor-pointer flex gap-2 items-center", className)}{...props}>
-            {children}
-        </li>
-    )
-}
 
 export const NavBar = ({ className, ...props }: NavBarProps) => {
     return (
@@ -30,30 +15,36 @@ export const NavBar = ({ className, ...props }: NavBarProps) => {
             </div>
 
             <NavBarList className={"flex-grow"}>
-                <NavBarListItem>
+                <NavBarListItemLink href="/">
                     <HomeIcon className="w-4 h-4 group-hover:text-slate-50 " />
                     Home
-                </NavBarListItem>
-                <NavBarListItem>
+                </NavBarListItemLink>
+                <NavBarListItemLink href="/Games">
                     <GamePadIcon className="w-4 h-4  group-hover:text-slate-50" />
                     Games
-                </NavBarListItem>
-                <NavBarListItem>
+                </NavBarListItemLink>
+                <NavBarListItemLink href="/Top10">
                     <PriceIcon className="w-4 h-4 group-hover:text-slate-50" />
                     Top 10
-                </NavBarListItem>
-                <NavBarListItem>
+                </NavBarListItemLink>
+                <NavBarListItemLink href="/Walkthroughs">
                     <WalkthroughsIcon className="w-4 h-4 group-hover:text-slate-50" />
                     Walkthroughs
-                </NavBarListItem>
+                </NavBarListItemLink>
+
+                <NavBarListItemButton>
+                    <WalkthroughsIcon className="w-4 h-4 group-hover:text-slate-50" />
+                    Teste
+                </NavBarListItemButton>
+
             </NavBarList>
 
             <NavBarList>
-                <NavBarListItem>
+                <NavBarListItemLink href="/User">
                     <UserIcon className="w-4 h-4 group-hover:text-slate-50" />
                     User
-                </NavBarListItem>
+                </NavBarListItemLink>
             </NavBarList>
-        </nav >
+        </nav   >
     )
 }
