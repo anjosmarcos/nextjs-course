@@ -1,17 +1,24 @@
 import { GamePadIcon, HomeIcon, PriceIcon, UserIcon, WalkthroughsIcon } from "@/components"
 import { cn } from "@/helpers/cn"
+import Image from "next/image"
+import Logo from "../../assets/soildata.png"
 import { NavBarList } from "./NavBarList"
 import { NavBarListItemButton } from "./NavBarListItemButton"
 import { NavBarListItemLink } from "./NavBarListItemLink"
 import { NavBarProps } from "./types"
 
 
-
 export const NavBar = ({ className, ...props }: NavBarProps) => {
     return (
         <nav className={cn("flex flex-col h-screen bg-slate-900 border-r border-indigo-400/20 hover:border-indigo-400/40 w-72 p-2 text-slate-300", className)} {...props} >
             <div className="flex items-center justify-center">
-                <img src="https://soildata.mapbiomas.org/logos/navbar/soildata-m.png" alt="Logo SoilData" className="w-auto h-12 p-2 my-4  " />
+                <Image
+                    src={Logo}
+                    alt="Logo SoilData"
+                    className="w-auto h-12 p-2 my-4 "
+                    width={112}
+                    height={32}
+                />
             </div>
 
             <NavBarList className={"flex-grow"}>
