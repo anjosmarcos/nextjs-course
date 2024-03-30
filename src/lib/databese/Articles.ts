@@ -20,7 +20,14 @@ const Article = {
 
 
 
+    },
+    count: async ({ where = {} }) => {
+        const count = await prisma.article.count({
+            where: where,
+        })
+        return count
     }
+
 }
 
 export default Article
