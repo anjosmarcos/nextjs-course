@@ -10,16 +10,48 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model Article {
-  id            Int @id @default(autoincrement())
-  slug          String @unique @default(uuid())
-  title         String 
-  execert       String
-  content       String
-  image         String
-  publishedAt   DateTime
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  id          Int      @id @default(autoincrement())
+  slug        String   @unique @default(uuid())
+  title       String
+  execert     String
+  content     String
+  image       String
+  publishedAt DateTime
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
+// gener
+model Genres {
+  id        Int         @id @default(autoincrement())
+  slug      String      @unique @default(uuid())
+  title     String
+  genres    GameGerer[]
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+}
+
+// games
+model Games {
+  id        Int         @id @default(autoincrement())
+  slug      String      @unique @default(uuid())
+  title     String
+  year      Int
+  image     String
+  link      String
+  platform  String
+  games     GameGerer[]
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+}
+
+// gameGener
+model GameGerer {
+  game    Games  @relation(fields: [gameId], references: [id])
+  gameId  Int
+  genre   Genres @relation(fields: [genreId], references: [id])
+  genreId Int
+
+  @@id([gameId, genreId])
+}
